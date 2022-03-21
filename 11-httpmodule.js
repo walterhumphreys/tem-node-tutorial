@@ -1,7 +1,7 @@
 const http = require('http')
 const { endianness } = require('os')
 
-const server = http.createServer((reg,res)=>{
+const servers = http.createServer((reg,res)=>{
     
   //  res.write('my first node')
   //  res.end()
@@ -13,4 +13,18 @@ const server = http.createServer((reg,res)=>{
     `)
 })
 
-server.listen(5000)
+servers.listen(5000)
+
+
+///another test
+const http = require('http')
+const { endianness } = require('os')
+
+const server = http.createServer((reg,res)=>{
+  console.log('request event')
+  res.end('hello world')
+})
+
+server.listen(5000 , ()=>{
+    console.log('server is lisrening on 5000 ...')
+})
