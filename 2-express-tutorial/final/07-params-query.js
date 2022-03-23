@@ -6,8 +6,10 @@ app.get('/', (req, res) => {
   res.send('<h1> Home Page</h1><a href="/api/products">products</a>')
 })
 app.get('/api/products', (req, res) => {
-  const newProducts = products.map((product) => {
-    const { id, name, image } = product
+  const newProducts = products.map((prod) => {
+// prodcuts.map allow us to destruture the array which in this case products is the array with all the data, and thats cause we declared productos is equal to products array.
+//prod within products.map() we assign the array to the new value called prod, then we select expliciy the info to display
+    const { id, name, image } = prod
     return { id, name, image }
   })
 
@@ -29,12 +31,12 @@ app.get('/api/products/:productID', (req, res) => {
 })
 
 app.get('/api/products/:productID/reviews/:reviewID', (req, res) => {
-  console.log(req.params)
+//  console.log(req.params)
   res.send('hello world')
 })
 
 app.get('/api/v1/query', (req, res) => {
-  // console.log(req.query)
+  console.log(req.query)
   const { search, limit } = req.query
   let sortedProducts = [...products]
 
@@ -51,6 +53,7 @@ app.get('/api/v1/query', (req, res) => {
     return res.status(200).json({ sucess: true, data: [] })
   }
   res.status(200).json(sortedProducts)
+ 
 })
 
 app.listen(5000, () => {
